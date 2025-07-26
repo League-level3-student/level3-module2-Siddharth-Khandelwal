@@ -38,49 +38,60 @@ import processing.core.PApplet;
  *     mousePressed variable
  */
 public class _03_VisualArraySorter extends PApplet {
-    static final int WIDTH = 600;
-    static final int HEIGHT = 600;
-int[] arr;
-    @Override
-    public void settings() {
-        size(WIDTH, HEIGHT);
-    }
+	static final int WIDTH = 600;
+	static final int HEIGHT = 600;
+	int[] arr;
 
-    @Override
-    public void setup() {
-        arr = new int[50];
-     
-        for (int i = 0; i < arr.length; i++) {
-			arr[i]=  (int)random(HEIGHT);
+	@Override
+	public void settings() {
+		size(WIDTH, HEIGHT);
+	}
+
+	@Override
+	public void setup() {
+		arr = new int[50];
+
+		noStroke();
+	}
+
+	@Override
+	public void draw() {
+		background(0, 0, 0);
+		fill(255, 255, 255);
+		for (int i = 0; i < arr.length; i++) {
+			rect(i * (width / arr.length), HEIGHT, width / arr.length, -arr[i]);
 		}
-        noStroke();
-    }
+		stepSort(arr);
+		if (mousePressed) {
+			RandoNorris();
+		}
+	}
 
-    @Override
-    public void draw() {
-        background(100, 100, 100);
-        fill(240, 17, 149);
-    }
+	public void RandoNorris() {
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = (int) random(HEIGHT);
+		}
+	}
 
-    static public void main(String[] passedArgs) {
-        PApplet.main(_03_VisualArraySorter.class.getName());
-    }
-    
-    /*********************** DO NOT MODIFY THE CODE BELOW ********************/
-    
-    int startIndex = 1;
+	static public void main(String[] passedArgs) {
+		PApplet.main(_03_VisualArraySorter.class.getName());
+	}
 
-    void stepSort(int[] arr) {
-      for (int i = startIndex; i < arr.length; i++) {
-        if (arr[i - 1] > arr[i]) {
-          int t = arr[i];
-          arr[i] = arr[i - 1];
-          arr[i - 1] = t;
+	/*********************** DO NOT MODIFY THE CODE BELOW ********************/
 
-          startIndex = i;
-          return;
-        }
-      }
-      startIndex = 1;
-    }
+	int startIndex = 1;
+
+	void stepSort(int[] arr) {
+		for (int i = startIndex; i < arr.length; i++) {
+			if (arr[i - 1] > arr[i]) {
+				int t = arr[i];
+				arr[i] = arr[i - 1];
+				arr[i - 1] = t;
+
+				startIndex = i;
+				return;
+			}
+		}
+		startIndex = 1;
+	}
 }
