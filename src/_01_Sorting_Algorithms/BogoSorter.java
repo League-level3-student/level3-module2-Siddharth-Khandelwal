@@ -6,7 +6,7 @@ public class BogoSorter extends Sorter {
     public BogoSorter() {
         type = "Bogo";
     }
-
+Random rand = new Random();
     /*
      * Bogo sort is a joke sorting algorithm. It is considered the most
      * inefficient sorting algorithm while still maintaining the possibility
@@ -20,6 +20,23 @@ public class BogoSorter extends Sorter {
      */
     @Override
     void sort(int[] array, SortingVisualizer display) {
-        
-    }
+    	while(!isSorted(array)){
+    		int s = rand.nextInt(array.length);
+    		int r = rand.nextInt(array.length);
+    		int placeholder = array[r];
+    		array[r] = array[s];
+    		array[s] = placeholder;
+    		display.updateDisplay();
+    	}
+}
+    	
+      boolean isSorted(int array[]) {
+    	  for (int i = 0; i < array.length-1; i++) {
+			if(array[i]>array[i+1]) {
+				return false;
+			}
+		}
+		return true;
+      
+}
 }
