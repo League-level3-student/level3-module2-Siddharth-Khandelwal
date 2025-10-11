@@ -9,7 +9,9 @@ import java.util.List;
 public class Algorithms {
 
 	public static String multiply(int num1, int num2) {
-		return null;
+		int num = num1*num2;
+		String Jeff = num1+" x "+num2+" = "+num;
+		return Jeff;
 	}
 
 	public static int findBrokenEgg(List<String> eggs) {
@@ -94,4 +96,46 @@ public class Algorithms {
 
 	}
 
+	public static List<String> sortWords(List<String> words) {
+		for(int i = 0; i < words.size(); i++) {
+			for(int j = 0; j < words.size()-1; j++) {
+			int compVal = words.get(j).compareTo(words.get(j+1));
+			if(compVal > 0) {
+				String temp = words.get(j);
+				words.set(j, words.get(j + 1));
+				words.set(j + 1, temp);
+			}
+			}
+		}
+		return words;
+	}
+
+	public static boolean isPrime(int i) {
+		for(int n = 2; n < i; n++) {
+		if(i%n== 0) {
+			return false;
+		}
+	}
+return true;
+	}
+
+	public static boolean isSquare(int i) {
+		
+		double dubs = i;
+		double bob = Math.sqrt(dubs);
+		if(Math.floor(bob)== bob) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isCube(int i) {
+		double dubs = i;
+		double bob = Math.cbrt(dubs);
+		if(Math.floor(bob)== bob) {
+			return true;
+		}
+		
+		return false;
+	}
 }
